@@ -114,6 +114,21 @@ const idInvalidCardCompanies = invalidCard => {
   };
 };
 
+const user_card_checker = (user_card) => {
+  
+  var user_card_formated = [[]]
+  for(i = 0; i < user_card.length; i ++) {
+    user_card_formated[0].push(parseInt(user_card[i]))
+    
+  };
+
+  console.log(\n\n"User's Card:\n")
+
+  findInvalidCard(user_card_formated);
+
+
+}
+
 
 const main = () => {
   // call functions with nested arracy of cardnumbers
@@ -122,19 +137,8 @@ const main = () => {
 
   // user may delete the "//" below and add a card number as a string to check
   
-  /*
-  
-  var user_card = "4744283848485772";
+  //user_card_checker("4744283848485772");
 
-  var user_card_formated = [[]]
-  for(i = 0; i < user_card.length; i ++) {
-    user_card_formated[0].push(parseInt(user_card[i]))
-    
-  };
-
-  findInvalidCard(user_card_formated);
-
-    */
 
 }
 
