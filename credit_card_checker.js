@@ -29,3 +29,98 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]; 
 
+// Checker starts here -------------------------------------------------------------------------
+
+
+// validateCred(array) - use Luhn algorithm to retrun boolian value for card validity */
+const validateCred = originalCardNum => {
+
+  // start itterating from the last digit then to the left
+  let luhnCardNum = [];
+  let luhnCardSum = 0;
+  let counter = 0;
+  
+  //  loop through to creat a new aray with the given card number
+  for (let i = (originalCardNum.length - 1) ; i >= 0; i -= 1) {
+    //only double every other number from the left
+    counter++;
+    if (counter % 2 == 0) {
+      //if boubled number is double digit, didgets of number is summed
+      if (originalCardNum[i] * 2 > 9) {
+        luhnCardNum.unshift((originalCardNum[i] * 2) - 9);
+      } else {
+        luhnCardNum.unshift(originalCardNum[i] * 2);
+      }; 
+    } else {
+      luhnCardNum.unshift(originalCardNum[i]);
+    }
+  };
+  
+  // find sumation of luhn card Sum
+  for (let i = 0; i < luhnCardNum.length; i ++) {
+    luhnCardSum += luhnCardNum[i];
+  };
+  
+  // retrun whether card is VALID or INVALID
+  if (luhnCardSum % 10 == 0) {
+    return true
+  } else {
+    return false
+  }
+};
+
+/* findInvalidCard(nestedArray) - loops through nested array of card numbers to find card validity using validateCred() */
+const findInvalidCard = allCards => {
+  
+  let allValidCards = [];
+  let allInvalidCards = [];
+
+  // loop thorugh to find all card's validity
+  for (i = 0; i < allCards.length; i ++) {
+    let cardValidity = validateCred(allCards[i]);
+    
+    if (cardValidity == true) {
+      allValidCards += allCards[i];
+      console.log(`Card # ${i + 1} is VALID. \nCard Number: ${allCards[i].join("")}\n`);
+      // if card is invalid idInvalidCardCompanies()
+    } else {
+      allInvalidCards += allCards[i];
+      console.log(`Card # ${i + 1} is NOT VALID / INVALID. \nCard Number: ${allCards[i].join("")}`);
+      idInvalidCardCompanies(allCards[i]);
+    }
+  }
+};
+
+
+/* idInvalidCardCompanies(nestedArray) - loops through nested array of invalid card numbers to find card company that may have issued the faulty card number. If number does not correspond with card company return "Company not found." */
+//use switch function with default of "Company not found"
+const idInvalidCardCompanies = invalidCard => {
+  switch (invalidCard[0]) {
+    case 3:
+      console.log("The Issuer of the card was Amex (American Express).\n");
+      break;
+    case 4:
+      console.log("The Issuer of the card was Visa.\n");
+      break;
+    case 5:
+      console.log("The Issuer of the card was Master Card.\n");
+      break;
+    case 6:
+      console.log("The Issuer of the card was Discover.\n");
+      break;
+    default:
+      console.log("Company not found.\n")
+      break;
+  };
+};
+
+
+const main = () => {
+  // call functions with nested arracy of cardnumbers
+  findInvalidCard(batch);
+
+  
+
+}
+
+main();
