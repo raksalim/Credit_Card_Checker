@@ -1,14 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        // Checker starts here -------------------------------------------------------------------------
+
+
+        // validateCred(array) - use Luhn algorithm to retrun boolian value for card validity */
+        const validateCred = () => {
+
+            var originalCardNum = $("#card_number").val();
+
+            // start itterating from the last digit then to the left
+            let luhnCardNum = [];
+            let luhnCardSum = 0;
+            let counter = 0;
+
+            //  loop through to creat a new aray with the given card number
+            for (let i = (originalCardNum.length - 1); i >= 0; i -= 1) {
+                //only double every other number from the left
+                counter++;
+                if (counter % 2 == 0) {
+                    //if boubled number is double digit, didgets of number is summed
+                    if (originalCardNum[i] * 2 > 9) {
+                        luhnCardNum.unshift((originalCardNum[i] * 2) - 9);
+                    } else {
+                        luhnCardNum.unshift(originalCardNum[i] * 2);
+                    };
+                } else {
+                    luhnCardNum.unshift(originalCardNum[i]);
+                }
+            };
+
+            // find sumation of luhn card Sum
+            for (let i = 0; i < 16; i++) {
+                luhnCardSum += luhnCardNum[i];
+            };
+
+            // retrun whether card is VALID or INVALID
+            if (luhnCardSum % 10 == 0) {
+                return true
+            } else {
+                return false
+            }
+        };
+
+        /* findInvalidCard(nestedArray) - loops through nested array of card numbers to find card validity using validateCred() */
+        const findInvalidCard = allCards => {
+
+            let allValidCards = [];
+            let allInvalidCards = [];
+
+            // loop thorugh to find all card's validity
+            for (i = 0; i < allCards.length; i++) {
+                let cardValidity = validateCred(allCards[i]);
+
+                if (cardValidity == true) {
+                    allValidCards += allCards[i];
+                    document.write(`<p>Card # ${i + 1} is VALID. \nCard Number: ${allCards[i].join("")}\n</p>`);
+                    // if card is invalid idInvalidCardCompanies()
+                } else {
+                    allInvalidCards += allCards[i];
+                    document.write(`<p>Card # ${i + 1} is NOT VALID / INVALID. \nCard Number: ${allCards[i].join("")}</p>`);
+                    idInvalidCardCompanies(allCards[i]);
+                }
+            }
+        };
+
+
+        /* idInvalidCardCompanies(nestedArray) - loops through nested array of invalid card numbers to find card company that may have issued the faulty card number. If number does not correspond with card company return "Company not found." */
+        //use switch function with default of "Company not found"
+        const idInvalidCardCompanies = invalidCard => {
+            switch (invalidCard[0]) {
+                case 3:
+                    document.write("<p>The Issuer of the card was Amex (American Express).\n</p>");
+                    break;
+                case 4:
+                    document.write("<p>The Issuer of the card was Visa.\n</p>");
+                    break;
+                case 5:
+                    document.write("<p>The Issuer of the card was Master Card.\n</p>");
+                    break;
+                case 6:
+                    document.write("<p>The Issuer of the card was Discover.\n</p>");
+                    break;
+                default:
+                    document.write("<p>Company not found.\n</p>")
+                    break;
+            };
+        };
+
+        const user_card_checker = (user_card) => {
+
+            var user_card_formated = [[]]
+            for (i = 0; i < user_card.length; i++) {
+                user_card_formated[0].push(parseInt(user_card[i]))
+
+            };
+
+            document.write("User's Card:\n")
+
+            findInvalidCard(user_card_formated);
+
+
+        }
+    </script>
 </head>
+
 <body>
+
+    <div>
+        <span>Credit Card Number: </span>
+        <input type="text" id="card_number" value maxlength="19" style="width: 195px; padding: 5px; margin: 5px;" >
+        <a href="javascript:findInvalidCard();">Validate</a>
+    </div>
 </body>
 
-<script src="credit_card_checker.js"></script>
+<script></script>
 
 
 </html>
