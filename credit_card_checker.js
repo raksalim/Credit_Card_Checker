@@ -81,11 +81,11 @@ const findInvalidCard = allCards => {
     
     if (cardValidity == true) {
       allValidCards += allCards[i];
-      document.write(`<p>Card # ${i + 1} is VALID. \nCard Number: ${allCards[i].join("")}\n</p>`);
+      console.log(`Card # ${i + 1} is VALID. \nCard Number: ${allCards[i].join("")}\n`);
       // if card is invalid idInvalidCardCompanies()
     } else {
       allInvalidCards += allCards[i];
-      document.write(`<p>Card # ${i + 1} is NOT VALID / INVALID. \nCard Number: ${allCards[i].join("")}</p>`);
+      console.log(`Card # ${i + 1} is NOT VALID / INVALID. \nCard Number: ${allCards[i].join("")}`);
       idInvalidCardCompanies(allCards[i]);
     }
   }
@@ -97,19 +97,19 @@ const findInvalidCard = allCards => {
 const idInvalidCardCompanies = invalidCard => {
   switch (invalidCard[0]) {
     case 3:
-      document.write("<p>The Issuer of the card was Amex (American Express).\n</p>");
+      console.log("The Issuer of the card was Amex (American Express).\n");
       break;
     case 4:
-      document.write("<p>The Issuer of the card was Visa.\n</p>");
+      console.log("The Issuer of the card was Visa.\n");
       break;
     case 5:
-      document.write("<p>The Issuer of the card was Master Card.\n</p>");
+      console.log("The Issuer of the card was Master Card.\n");
       break;
     case 6:
-      document.write("<p>The Issuer of the card was Discover.\n</p>");
+      console.log("The Issuer of the card was Discover.\n");
       break;
     default:
-      document.write("<p>Company not found.\n</p>")
+      console.log("Company not found.\n")
       break;
   };
 };
@@ -122,7 +122,7 @@ const user_card_checker = (user_card) => {
     
   };
 
-  document.write("User's Card:\n")
+  console.log(\n\n"User's Card:\n")
 
   findInvalidCard(user_card_formated);
 
@@ -137,8 +137,7 @@ const main = () => {
 
   // user may delete the "//" below and add a card number as a string to check
   
-  var output = user_card_checker("4744283848485772");
-
+  //user_card_checker("4744283848485772");
 
 
 }
