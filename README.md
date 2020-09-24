@@ -41,9 +41,6 @@ OUTPUT:
 
           Card # 6 is NOT VALID / INVALID. Card Number: 4532778771091795
 
-
-
-
           The Issuer of the card was Visa.
 
           Card # 7 is NOT VALID / INVALID. Card Number: 5795593392134643
@@ -66,9 +63,6 @@ OUTPUT:
 
           The Issuer of the card was Amex (American Express).
 
-
-
-
           Card # 12 is VALID. Card Number: 5466100861620239
 
           Card # 13 is NOT VALID / INVALID. Card Number: 6011377020962656203
@@ -88,12 +82,12 @@ there is a built in option for the user to test out card numbers :)
 
 USER INPUT:
 
-        "4744283848485772"
+          "4744283848485772"
     
 OUTPUT:
 
-        User's Card:
-        Card # 1 is VALID. Card Number: 4744283848485772
+          User's Card:
+          Card # 1 is VALID. Card Number: 4744283848485772
 
 
 
