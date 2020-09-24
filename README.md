@@ -39,6 +39,8 @@ OUTPUT:
 
           Card # 5 is VALID. Card Number: 4539404967869666
 
+
+
           Card # 6 is NOT VALID / INVALID. Card Number: 4532778771091795
 
           The Issuer of the card was Visa.
@@ -58,6 +60,8 @@ OUTPUT:
           Card # 10 is NOT VALID / INVALID. Card Number: 5382019772883854
 
           The Issuer of the card was Master Card.
+          
+          
 
           Card # 11 is NOT VALID / INVALID. Card Number: 344801968305414
 
